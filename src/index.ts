@@ -39,7 +39,11 @@ const main = async () => {
   const app = express();
 
   const RedisStore = connectRedis(session);
-  const redis = new Redis(process.env.REDIS_URL);
+  const redis = new Redis({
+    host: "redis-16230.c10.us-east-1-2.ec2.cloud.redislabs.com",
+    port: 16320,
+    password: "P3jV3TqPnSOBNBpbt05AFc8lzXU3vwak",
+  });
   app.set("trust proxy", 1);
   app.use(
     cors({
