@@ -40,10 +40,14 @@ const main = async () => {
 
   const RedisStore = connectRedis(session);
   const redis = new Redis({
-    host: "redis-16230.c10.us-east-1-2.ec2.cloud.redislabs.com",
-    port: 16320,
-    password: "P3jV3TqPnSOBNBpbt05AFc8lzXU3vwak",
+    host: process.env.REDIS_HOST,
+    port: parseInt(process.env.REDIS_PORT as string),
+    password: process.env.REDIS_PASSWORD,
+    connectTimeout: 1000000
   });
+  redis.connect(() => {
+    console.log('Connected to redis instance')
+  })
   app.set("trust proxy", 1);
   app.use(
     cors({
