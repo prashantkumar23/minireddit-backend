@@ -65,7 +65,7 @@ const main = async () => {
         httpOnly: true,
         path: "/",
         sameSite: "none",
-        secure: false
+        secure: true
 
       },
       saveUninitialized: false,
